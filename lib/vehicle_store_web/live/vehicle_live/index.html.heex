@@ -1,0 +1,40 @@
+<h1>Listing Vehicles</h1>
+
+<form phx-change="set-filter">
+  <select name="brand" id="brand">
+    <option/>
+    <%= for brand <- @brands do %>
+      <option value={brand}
+              selected={if @selected_brand == brand, do: "selected"}>
+              <%= brand %>
+      </option>
+    <% end %>
+  </select>
+
+  <select name="model" id="model">
+    <option/>
+    <%= for model <- @models do %>
+      <option value={model}><%= model %></option>
+    <% end %>
+  </select>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Year</th>
+
+    </tr>
+  </thead>
+  <tbody id="vehicles">
+    <%= for vehicle <- @vehicles do %>
+      <tr id={"vehicle-#{vehicle.id}"}>
+        <td><%= vehicle.brand %></td>
+        <td><%= vehicle.model %></td>
+        <td><%= vehicle.year %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
